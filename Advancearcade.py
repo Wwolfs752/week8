@@ -6,9 +6,11 @@ class Comp151Window(arcade.Window):
         self.player = None
         self.targets = arcade.SpriteList()
         self.score = 0
+        self.sound1 = None
 
 
     def setup(self):
+        self.sound1 = arcade.load_sound("elec_lightning.wav")
         self.player = arcade.Sprite("f1-ship1-6.png")
         self.player.center_x = 200
         self.player.center_y = 500
@@ -19,7 +21,13 @@ class Comp151Window(arcade.Window):
             rock.center_y = random.randint(16, 984)
 
     def on_update(self, delta_time):
-        pass
+        self.player.center_x += 3
+        if self.player.center_x > 1200:
+            self.player.center_x = 0
+            arcade.play_sound(self.sound1)
+        self.player.center_y += 3
+        if self.player.center_y > 1000:
+            self.player.center_y = 0
 
 
     def on_draw(self):
