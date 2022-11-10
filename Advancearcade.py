@@ -4,6 +4,7 @@ class Comp151Window(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height, 'Arcade Class Window Demo')
         self.player = None
+        self.player_dx = 0
         self.targets = arcade.SpriteList()
         self.score = 0
         self.sound1 = None
@@ -21,13 +22,11 @@ class Comp151Window(arcade.Window):
             rock.center_y = random.randint(16, 984)
 
     def on_update(self, delta_time):
-        self.player.center_x += 3
+        self.player.center_x += self.player_dx
         if self.player.center_x > 1200:
             self.player.center_x = 0
             arcade.play_sound(self.sound1)
-        self.player.center_y += 3
-        if self.player.center_y > 1000:
-            self.player.center_y = 0
+
 
 
     def on_draw(self):
@@ -36,3 +35,13 @@ class Comp151Window(arcade.Window):
         self.targets.draw()
 
         arcade.finish_render()
+
+    def on_key_press(self, symbol, modifiers):
+        if symbol == arcade.key.LEFT:
+            self.player_dx = -3
+        elif symbol == arcade.key.RIGHT:
+            self.player_dx = 3
+
+    def on_key_release(self, symbol, modifiers):
+        if symbol == arcade.key.LEFT or symbol == arcade.key.RIGHT:
+            self.player_dx = 0
