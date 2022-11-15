@@ -42,7 +42,6 @@ class Comp151Window(arcade.Window):
         arcade.start_render()
         self.player.draw()
         self.targets.draw()
-
         arcade.finish_render()
 
     def on_key_press(self, symbol, modifiers):
