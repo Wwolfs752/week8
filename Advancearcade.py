@@ -5,6 +5,7 @@ class Comp151Window(arcade.Window):
         super().__init__(width, height, 'Arcade Class Window Demo')
         self.player = None
         self.player_dx = 0
+        self.player_dy = 0
         self.targets = arcade.SpriteList()
         self.score = 0
         self.sound1 = None
@@ -26,8 +27,16 @@ class Comp151Window(arcade.Window):
         if self.player.center_x > 1200:
             self.player.center_x = 0
             arcade.play_sound(self.sound1)
-
-
+        if self.player.center_x < 0:
+            self.player.center_x = 1200
+            arcade.play_sound(self.sound1)
+        if self.player.center_y > 1000:
+            self.player.center_y = 0
+            arcade.play_sound(self.sound1)
+        if self.player.center_y < 0:
+            self.player.center_y = 1000
+            arcade.play_sound(self.sound1)
+        self.player.center_y += self.player_dy
 
     def on_draw(self):
         arcade.start_render()
@@ -41,7 +50,12 @@ class Comp151Window(arcade.Window):
             self.player_dx = -3
         elif symbol == arcade.key.RIGHT:
             self.player_dx = 3
-
+        if symbol == arcade.key.UP:
+            self.player_dy = 3
+        elif symbol == arcade.key.DOWN:
+            self.player_dy = -3
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.LEFT or symbol == arcade.key.RIGHT:
             self.player_dx = 0
+        if symbol == arcade.key.UP or symbol == arcade.key.DOWN:
+            self.player_dy = 0
