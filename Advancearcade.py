@@ -1,5 +1,7 @@
 import arcade
 import random
+
+
 class Comp151Window(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height, 'Arcade Class Window Demo')
@@ -9,7 +11,6 @@ class Comp151Window(arcade.Window):
         self.targets = arcade.SpriteList()
         self.score = 0
         self.sound1 = None
-
 
     def setup(self):
         self.sound1 = arcade.load_sound("elec_lightning.wav")
@@ -53,6 +54,7 @@ class Comp151Window(arcade.Window):
             self.player_dy = 3
         elif symbol == arcade.key.DOWN:
             self.player_dy = -3
+
     def on_key_release(self, symbol, modifiers):
         if symbol == arcade.key.LEFT or symbol == arcade.key.RIGHT:
             self.player_dx = 0

@@ -27,7 +27,6 @@ class ShipWindow(arcade.Window):
             for gold in collided_gold:
                 self.goals.remove(gold)
 
-
     def on_draw(self):
         arcade.start_render()
         self.ship.draw()
@@ -37,4 +36,3 @@ class ShipWindow(arcade.Window):
     def on_mouse_motion(self, x, y, dx, dy):
         self.ship.center_y = y
         self.ship.center_x = x
-
